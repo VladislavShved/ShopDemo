@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+</head>
+<body>
+    <ul data-bind="foreach: { data: myItems, afterAdd: yellowFadeIn }">
+        <li data-bind="text: $data"></li>
+    </ul>
+
+    <button data-bind="click: addItem">Add</button>
+
+    <script type="text/javascript">
+        ko.applyBindings({
+            myItems: ko.observableArray(['A', 'B', 'C']),
+            yellowFadeIn: function (element, index, data) {
+                $(element).filter("li")
+                          .animate({ backgroundColor: 'yellow' }, 200)
+                          .animate({ backgroundColor: 'white' }, 800);
+            },
+            addItem: function () { this.myItems.push('New item'); }
+        });
+    </script>
+</body>
+</html>
